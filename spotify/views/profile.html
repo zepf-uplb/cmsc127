@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="spotifyApp">
+
+	<head>
+		<title>Spotify</title>
+		<meta charset = "utf-8"/>
+   		<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  	</head>
+
+  	<body ng-controller="mainController">
+
+		<div class="container">
+			<div class="header">
+				<h1>Profile</h1>
+			</div>
+			<div>
+			<h2>Playlists</h2>
+	  			<div ng-repeat="list in playlistData">
+	 			   	<input type="submit" class="btn btn-warning" ng-click="goToPlaylist(list.playlist_id)" value="Playlist {{ list.playlist_id }}">
+	 			   <button type="button" class="btn btn-danger" ng-click="removePlaylist(list.playlist_id)"><span class="glyphicon glyphicon-remove"></span></button>
+	 			</div>
+	 		</div>
+			<input type="button" value="Add Playlist" ng-click="addPlaylist()"/>
+			<input type="button" value="See Playlist" ng-click="getPlaylistData()"/>
+			<form action="http://0.0.0.0:3000/"><input type="submit" value="Logout" ng-click="userLogout()"/></form>
+			
+		</div>
+
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="bower_components/angular/angular.min.js"></script>
+ 	<script src="bower_components/angular-route/angular-route.min.js"></script>
+	<script src="javascripts/app.js"></script>
+
+	<script type="text/javascript">
+		/*$(function() {
+		  $('#playlist').submit(function(){
+		  	console.log("Here2");
+		    $.get('http://0.0.0.0:3000/playlist', function() {
+    			window.location = 'http://0.0.0.0:3000/playlist';
+    		});
+		    return false;
+		  });
+		});*/
+	</script>
+  </body>
+  </body>
+
+</html>

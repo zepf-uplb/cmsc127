@@ -1,0 +1,79 @@
+\c spotify
+
+CREATE TABLE ADMINISTRATOR(
+Admin_username VARCHAR(30),
+Admin_password VARCHAR(30),
+Email_address VARCHAR(30),
+Gender VARCHAR(10),
+CONSTRAINT ADMINISTRATOR_Admin_username_pk PRIMARY KEY(Admin_username)
+);
+
+CREATE TABLE USER_(
+Email_address VARCHAR(30),
+Birthday DATE,
+Date_approved DATE,
+Gender VARCHAR(10),
+Password VARCHAR(30),
+Username VARCHAR(30),
+Admin_username VARCHAR(30),
+CONSTRAINT USER__Email_address_pk PRIMARY KEY(Email_address),
+CONSTRAINT USER__Admin_username_fk FOREIGN KEY(Admin_username) REFERENCES ADMINISTRATOR(Admin_username)
+);
+
+CREATE TABLE PROFILE(
+Profile_id SERIAL,
+Birthday DATE,
+Country VARCHAR(30),
+Gender VARCHAR(10),
+Phone_number VARCHAR(11),
+Email_address VARCHAR(30),
+CONSTRAINT PROFILE_Profile_id_pk PRIMARY KEY(Profile_id),
+CONSTRAINT PROFILE_Email_address_fk FOREIGN KEY(Email_address) REFERENCES USER_(Email_address)
+);
+
+CREATE TABLE MUSIC(
+Track_no INTEGER,
+Album VARCHAR(40),
+Artist VARCHAR(30),
+Date_added DATE,
+Song_length INTEGER,
+Song_Title VARCHAR(20),
+Times_played INTEGER,
+Email_address VARCHAR(30),
+CONSTRAINT MUSIC_Track_number_pk PRIMARY KEY(Track_no),
+CONSTRAINT MUSIC_Email_address_fk FOREIGN KEY(Email_address) REFERENCES USER_(Email_address)
+);
+
+CREATE TABLE PLAYLIST(
+Playlist_id SERIAL,
+Author VARCHAR(30),
+No_of_followers INTEGER,
+No_of_songs INTEGER,
+Total_length INTEGER,
+Email_address VARCHAR(30),
+CONSTRAINT PLAYLIST_Playlist_id_pk PRIMARY KEY(Playlist_id),
+CONSTRAINT PLAYLIST_Email_address_fk FOREIGN KEY(Email_address) REFERENCES USER_(Email_address)
+);
+
+CREATE TABLE RECOMMEND(
+Email_address VARCHAR(30),
+Track_no INTEGER,
+CONSTRAINT RECOMMEND_Email_address_fk FOREIGN KEY(Email_address) REFERENCES USER_(Email_address),
+CONSTRAINT RECOMMEND_Track_number_fk FOREIGN KEY(Track_no) REFERENCES MUSIC(Track_no),
+PRIMARY KEY(Email_address, Track_no)
+);
+
+CREATE TABLE SEARCH(
+Email_address VARCHAR(30),
+Track_no INTEGER,
+CONSTRAINT SEARCH_Email_address_fk FOREIGN KEY(Email_address) REFERENCES USER_(Email_address),
+CONSTRAINT SEARCH_Track_no_fk FOREIGN KEY(Track_no) REFERENCES MUSIC(Track_no),
+PRIMARY KEY(Email_address, Track_no)
+);
+
+CREATE TABLE CONTAIN(
+Playlist_id SERIAL,
+Track_no INTEGER,
+CONSTRAINT CONTAIN_Playlist_id_fk FOREIGN KEY(Playlist_id) REFERENCES PLAYLIST(Playlist_id),
+CONSTRAINT CONTAIN_Track_no_fk FOREIGN KEY(Track_no) REFERENCES MUSIC(Track_no)
+);

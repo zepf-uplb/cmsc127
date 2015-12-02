@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="spotifyApp">
+
+	<head>
+		<title>Spotify</title>
+		<meta charset = "utf-8"/>
+   		<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  	</head>
+
+  	<body ng-controller="mainController">
+
+		<div class="container">
+			<div class="header">
+				<h1>Spotify</h1>
+			</div>
+			<a href="http://0.0.0.0:3000/sign-up">Sign-Up</a><br/>
+			<a href="http://0.0.0.0:3000/log-in">Log-In</a><br/>
+			<a href="http://0.0.0.0:3000/admin_sign-up">Admin Sign-Up</a><br/>
+			<a href="http://0.0.0.0:3000/admin_log-in">Admin Log-In</a><br/>
+			
+		</div>
+		<script>
+			console.log("document.cookie = " + document.cookie);
+		</script>
+
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="bower_components/angular/angular.min.js"></script>
+ 	<script src="bower_components/angular-route/angular-route.min.js"></script>
+	<script src="javascripts/app.js"></script>
+  </body>
+
+</html>

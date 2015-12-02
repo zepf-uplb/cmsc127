@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="spotifyApp">
+
+	<head>
+		<title>Spotify</title>
+		<meta charset = "utf-8"/>
+   		<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  	</head>
+
+  	<body ng-controller="mainController">
+
+		<div class="container">
+			<div class="header">
+				<h1>Log-in</h1>
+			</div>
+			<form ng-submit="loginUser()">
+				<input type="text" ng-model="loginData.username" placeholder="Username" required="true"/><br/>
+				<input type="password" ng-model="loginData.password" placeholder="Password" required="true"/><br/>
+				<input type="submit" value="Submit"/>
+			</form>	
+			<a href="http://0.0.0.0:3000/">Home</a>
+		</div>
+
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="bower_components/angular/angular.min.js"></script>
+ 	<script src="bower_components/angular-route/angular-route.min.js"></script>
+	<script src="javascripts/app.js"></script>
+
+	<script type="text/javascript">
+		$(function() {
+		  $('form').submit(function(){
+		    $.get('http://0.0.0.0:3000/profile', function() {
+    			window.location = 'http://0.0.0.0:3000/profile';
+    		});
+		    return false;
+		  });
+		});
+	</script>
+  </body>
+
+</html>
